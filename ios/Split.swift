@@ -19,7 +19,7 @@ class Sentiment: NSObject {
   }
 
   @objc(check:callback:)
-  func check(points: [[Float32]], callback: RCTResponseSenderBlock) {
+  func check(text: NSString, callback: RCTResponseSenderBlock) {
     print("checking")
     if let path = Bundle.main.path(forResource: "word_index", ofType: "json") {
       do {

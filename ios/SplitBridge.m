@@ -10,7 +10,7 @@
 
 @interface RCT_EXTERN_MODULE(Sentiment, NSObject)
 
-RCT_EXTERN_METHOD(check:(NSArray<NSArray<NSNumber *> *> *)points callback:(RCTResponseSenderBlock *)callback)
+RCT_EXTERN_METHOD(check:(NSString)text callback:(RCTResponseSenderBlock *)callback)
 
 @end
 

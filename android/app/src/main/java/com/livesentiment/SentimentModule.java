@@ -1,4 +1,4 @@
-package com.livesentiment.sentiment;
+package com.livesentiment;
 
 import com.facebook.react.ReactInstanceManager;
 import com.facebook.react.ReactNativeHost;
@@ -25,8 +25,8 @@ class SentimentModule extends ReactContextBaseJavaModule {
     }
 
     @ReactMethod
-    void check(int[] texts, Callback errorCallback, Callback successCallback) {
-        successCallback.invoke(Math.random());
+    void check(String text, Callback callback) {
+        callback.invoke(null, Math.random());
     }
 }
 

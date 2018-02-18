@@ -3,10 +3,11 @@ import { StyleSheet, Text, View, TextInput, Dimensions, KeyboardAvoidingView, Bu
 import debounce from 'lodash/debounce';
 import AnimatedLinearGradient, {presetColors} from 'react-native-animated-linear-gradient'
 import {NativeModules} from 'react-native';
-const { Sentiment } = NativeModules;
+import { isIphoneX } from 'react-native-iphone-x-helper';
+import { Platform } from 'react-native'
 
-const { height, width } = Dimensions.get('window')
-const isBigDevice = (width > 800 || height > 800);
+const { Sentiment } = NativeModules;
+const { isPad } = Platform;
 
 const pallet = {
   textColor: '#FAFAFA',
@@ -57,8 +58,8 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     borderBottomWidth: 0,
   },
-  footer: {
-    marginTop: isBigDevice ? '6%' : '8%',
+  info: {
+    marginTop: isIphoneX() ? '10%' : (isPad ? '6%' : '8%'),
     marginRight: '2%',
     marginBottom: '2%',
     alignItems: 'center',
@@ -66,11 +67,11 @@ const styles = StyleSheet.create({
   },
   probability: {
     color: pallet.textColor,
-    fontSize: isBigDevice ? 20 : 12
+    fontSize: 18
   },
   textInput: {
     width: '90%', 
-    fontSize: isBigDevice ? 72 : 46,
+    fontSize: isPad ? 72 : 46,
     marginLeft: '5%',
     marginRight: '5%',
     alignSelf: 'stretch',
@@ -85,7 +86,7 @@ export default class App extends React.Component {
 
   checkSentiment = debounce(text => {
     if (Sentiment && Sentiment.check) {
-      Sentiment.check([], (err, probability) => {
+      Sentiment.check(text, (err, probability) => {
         if (err) return;
         const sentiment = probability > 0.5 ? '+' : '-';
         this.setState({
@@ -118,7 +119,7 @@ export default class App extends React.Component {
     return (
       <AnimatedLinearGradient customColors={colors} speed={2000}>
         <View style={[styles.container]}>
-          <View style={styles.footer}>
+          <View style={styles.info}>
             <Text style={styles.probability}>
               {sentiment && `Sentiment: ${sentiment}`}
             </Text>
