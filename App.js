@@ -5,6 +5,8 @@ import AnimatedLinearGradient, {presetColors} from 'react-native-animated-linear
 import {NativeModules} from 'react-native';
 import { isIphoneX } from 'react-native-iphone-x-helper';
 import { Platform } from 'react-native'
+import getVector from './getVector';
+
 
 const { Sentiment } = NativeModules;
 const { isPad } = Platform;
@@ -86,7 +88,7 @@ export default class App extends React.Component {
 
   checkSentiment = debounce(text => {
     if (Sentiment && Sentiment.check) {
-      Sentiment.check(text, (err, probability) => {
+      Sentiment.check(getVector(text), (err, probability) => {
         if (err) return;
         const sentiment = probability > 0.5 ? '+' : '-';
         this.setState({
