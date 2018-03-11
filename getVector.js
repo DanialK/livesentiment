@@ -1,21 +1,27 @@
-// const wordIndex = require('./data.json');
+import SQLite from 'react-native-sqlite-storage';
 
-// import wordIndex from './data.json';
-const wordIndex = {
-    "love": 147,
-    "hate": 1480,
-    "pizza": 2239,
-};
+SQLite.DEBUG(true);
+SQLite.enablePromise(false);
+
+const database_name = "sentiment_db.sqlite";
+
+const db = SQLite.openDatabase({name : database_name, location: 'Documents'},
+  () => console.log('success'), () => console.log("error"));
 
 const MAX_SEQUENCE_LENGTH = 1000;
 const ignore = "'!\"#$%&()*+,-./:;<=>?@[\\]^_`{|}~/\t/\n'";
 
+function getWords(text) {
+  const words = text
+    .toLowerCase()
+    .split('')
+    .filter(char => !ignore.includes(char))
+    .join('')
+    .split(' ');
+  return words;
+}
 
-function tokenizer(text) {
-  const filteredText = text.split('')
-  .filter(char => !ignore.includes(char))
-  .join('');
-  const words = filteredText.split(' ');
+function tokenizer(words, wordIndex) {
   return words.map(word => wordIndex[word] ? wordIndex[word] : 0)
 }
 
@@ -24,6 +30,28 @@ function padSequence(maxLen, sequence) {
   return zeros.concat(sequence);
 }
 
+function getQuery(words) {
+  let baseQuery = 'SELECT * from word_index ';
+  return baseQuery + words.map((word) => `WHERE key="${word}"`).join(' OR ');
+}
+
 export default function getVector(text) {
-  return padSequence(MAX_SEQUENCE_LENGTH, tokenizer(text));
+  const words = getWords(text);
+  return new Promise(resolve => {
+    db.transaction((tx) => {
+      tx.executeSql(getQuery(words), [],
+        function (tx, results) {
+          const wordIndex = {};
+          const len = results.rows.length;
+          for (let i = 0; i < len; i++) {
+            let row = results.rows.item(i);
+            wordIndex[row.key] = row.value;
+          }
+          resolve(padSequence(MAX_SEQUENCE_LENGTH, tokenizer(words, wordIndex)));
+        },
+        function (error) {
+          console.log('error', error);
+        })      
+    })
+  });
 }

@@ -7,7 +7,6 @@ import { isIphoneX } from 'react-native-iphone-x-helper';
 import { Platform } from 'react-native'
 import getVector from './getVector';
 
-
 const { Sentiment } = NativeModules;
 const { isPad } = Platform;
 
@@ -88,13 +87,15 @@ export default class App extends React.Component {
 
   checkSentiment = debounce(text => {
     if (Sentiment && Sentiment.check) {
-      Sentiment.check(getVector(text), (err, probability) => {
-        if (err) return;
-        const sentiment = probability > 0.5 ? '+' : '-';
-        this.setState({
-          sentiment,
-          probability,
-          colors: pallet[sentiment]
+      getVector(text).then(vectors => {
+        Sentiment.check(vectors, (err, probability) => {
+          if (err) return;
+          const sentiment = probability > 0.5 ? '+' : '-';
+          this.setState({
+            sentiment,
+            probability,
+            colors: pallet[sentiment]
+          });
         });
       });
     } else {
@@ -114,6 +115,8 @@ export default class App extends React.Component {
     this.setState({text});
     this.checkSentiment(text);
   };
+
+
 
   render() {
     const { text, sentiment, probability, colors, error } = this.state;

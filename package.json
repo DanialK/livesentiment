@@ -11,7 +11,8 @@
     "react-native": "0.53.0",
     "react-native-animated-linear-gradient": "^1.1.2",
     "react-native-iphone-x-helper": "^1.0.2",
-    "react-native-linear-gradient": "^2.4.0"
+    "react-native-linear-gradient": "^2.4.0",
+    "react-native-sqlite-storage": "^3.3.4"
   },
   "devDependencies": {
     "babel-jest": "22.2.2",
