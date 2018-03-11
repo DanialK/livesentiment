@@ -22,9 +22,9 @@
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		140ED2AC1D01E1AD002B40FF /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 146834041AC3E56700842450 /* libReact.a */; };
 		146834051AC3E58100842450 /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 146834041AC3E56700842450 /* libReact.a */; };
+		2506A1732054F93C0009DDA8 /* SentimentModel.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 2506A1712054F6F30009DDA8 /* SentimentModel.mlmodel */; };
+		2506A1742054F95E0009DDA8 /* Sentiment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25B79CFA2054E90A00B1F4B6 /* Sentiment.swift */; };
 		25B79CFD2054E93100B1F4B6 /* SentimentBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = 25B79CFC2054E93100B1F4B6 /* SentimentBridge.m */; };
-		25B79D012054EA7700B1F4B6 /* SentimentModel.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 25B79CFF2054E9A000B1F4B6 /* SentimentModel.mlmodel */; };
-		25B79D032054EB1C00B1F4B6 /* Sentiment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25B79CFA2054E90A00B1F4B6 /* Sentiment.swift */; };
 		2D02E4BC1E0B4A80006451C7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		2D02E4BD1E0B4A84006451C7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		2D02E4BF1E0B4AB3006451C7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
@@ -362,9 +362,9 @@
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = LiveSentiment/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = LiveSentiment/main.m; sourceTree = "<group>"; };
 		146833FF1AC3E56700842450 /* React.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = React.xcodeproj; path = "../node_modules/react-native/React/React.xcodeproj"; sourceTree = "<group>"; };
+		2506A1712054F6F30009DDA8 /* SentimentModel.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = SentimentModel.mlmodel; sourceTree = "<group>"; };
 		25B79CFA2054E90A00B1F4B6 /* Sentiment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sentiment.swift; sourceTree = "<group>"; };
 		25B79CFC2054E93100B1F4B6 /* SentimentBridge.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SentimentBridge.m; sourceTree = "<group>"; };
-		25B79CFF2054E9A000B1F4B6 /* SentimentModel.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = SentimentModel.mlmodel; sourceTree = SOURCE_ROOT; };
 		2D02E47B1E0B4A5D006451C7 /* LiveSentiment-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "LiveSentiment-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D02E4901E0B4A5D006451C7 /* LiveSentiment-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "LiveSentiment-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D16E6891FA4F8E400B85C8A /* libReact.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libReact.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -519,7 +519,7 @@
 		13B07FAE1A68108700A75B9A /* LiveSentiment */ = {
 			isa = PBXGroup;
 			children = (
-				25B79CFF2054E9A000B1F4B6 /* SentimentModel.mlmodel */,
+				2506A1712054F6F30009DDA8 /* SentimentModel.mlmodel */,
 				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
@@ -1221,8 +1221,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				25B79D032054EB1C00B1F4B6 /* Sentiment.swift in Sources */,
-				25B79D012054EA7700B1F4B6 /* SentimentModel.mlmodel in Sources */,
+				2506A1742054F95E0009DDA8 /* Sentiment.swift in Sources */,
+				2506A1732054F93C0009DDA8 /* SentimentModel.mlmodel in Sources */,
 				13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */,
 				25B79CFD2054E93100B1F4B6 /* SentimentBridge.m in Sources */,
 				13B07FC11A68108700A75B9A /* main.m in Sources */,
@@ -1553,7 +1553,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -1588,7 +1588,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
