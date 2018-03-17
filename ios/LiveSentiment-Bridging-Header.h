@@ -3,4 +3,5 @@
 //
 
 #import <React/RCTBridgeModule.h>
-#import "SentimentModel.h"
+#import "SentimentModelLSTM.h"
+#import "SentimentModelConvSimple.h"

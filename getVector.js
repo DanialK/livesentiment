@@ -3,12 +3,12 @@ import SQLite from 'react-native-sqlite-storage';
 SQLite.DEBUG(true);
 SQLite.enablePromise(false);
 
-const database_name = "sentiment_db.sqlite";
+const database_name = "sentiment_db.db";
 
-const db = SQLite.openDatabase({name : database_name, location: 'Documents'},
+const db = SQLite.openDatabase({name : database_name,  createFromLocation : 1},
   () => console.log('success'), () => console.log("error"));
 
-const MAX_SEQUENCE_LENGTH = 1000;
+const MAX_SEQUENCE_LENGTH = 300;
 const ignore = "'!\"#$%&()*+,-./:;<=>?@[\\]^_`{|}~/\t/\n'";
 
 function getWords(text) {
@@ -31,8 +31,8 @@ function padSequence(maxLen, sequence) {
 }
 
 function getQuery(words) {
-  let baseQuery = 'SELECT * from word_index ';
-  return baseQuery + words.map((word) => `WHERE key="${word}"`).join(' OR ');
+  let baseQuery = 'SELECT * from word_index WHERE ';
+  return baseQuery + words.map((word) => `key="${word}"`).join(' OR ');
 }
 
 export default function getVector(text) {

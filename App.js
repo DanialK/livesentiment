@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View, TextInput, Dimensions, KeyboardAvoidingView, Button } from 'react-native';
 import debounce from 'lodash/debounce';
-import AnimatedLinearGradient, {presetColors} from 'react-native-animated-linear-gradient'
+import AnimatedLinearGradient, {presetColors} from './AnimatedLinearGradient'
 import {NativeModules} from 'react-native';
 import { isIphoneX } from 'react-native-iphone-x-helper';
 import { Platform } from 'react-native'
@@ -39,7 +39,6 @@ const pallet = {
     '#EF5350',
     '#FF5252',
     '#F50057',
-    '#EF9A9A',
     '#EF9A9A',
     '#FF3D00',
     '#FFAB40',
@@ -88,12 +87,12 @@ export default class App extends React.Component {
   checkSentiment = debounce(text => {
     if (Sentiment && Sentiment.check) {
       getVector(text).then(vectors => {
-        Sentiment.check(vectors, (err, probability) => {
+        Sentiment.check(vectors, (err, score) => {
           if (err) return;
-          const sentiment = probability > 0.5 ? '+' : '-';
+          const sentiment = score > 0.5 ? '+' : '-';
           this.setState({
             sentiment,
-            probability,
+            probability: Math.abs(score - 0.5) / 0.5,
             colors: pallet[sentiment]
           });
         });

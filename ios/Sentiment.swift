@@ -16,33 +16,28 @@ class Sentiment: NSObject {
   }
   
   @objc(check:callback:)
-  func check(text: [NSNumber], callback: RCTResponseSenderBlock) {
+  func check(text: [Int32], callback: RCTResponseSenderBlock) {
     if #available(iOS 11.0, *) {
-      let model = SentimentModel()
+//      let model = SentimentModelConvSimple()
+      let model = SentimentModelLSTM()
 
-      guard let input_data = try? MLMultiArray(shape:[1000, 1, 1], dataType:.double) else {
+      guard let input_data = try? MLMultiArray(shape:[300, 1, 1], dataType:.float32) else {
         fatalError("Unexpected runtime error. MLMultiArray")
       }
 
       for (index, item) in text.enumerated() {
-        input_data[index] = item
+        let indices = [NSNumber(value: index), NSNumber(value: 0), NSNumber(value: 0)]
+        input_data[indices] = NSNumber(value: item)
       }
       
-      let i = SentimentModelInput(input: input_data)
-
-      let sentiment_prediction = try! model.prediction(fromFeatures: i)
-      print(sentiment_prediction.output.count)
-      print(sentiment_prediction.output[0]?.doubleValue)
-//      if(sentiment_prediction.output[0]?.doubleValue >= 0.5) {
-//        print("positive!")
-//      } else {
-//        print("negative!")
-//      }
-
-      
-      
-      let probability = Float(Float(arc4random()) / Float(UINT32_MAX))
-      callback([NSNull(), probability])
+//      let model_input = SentimentModelConvSimpleInput(input: input_data)
+      let model_input = SentimentModelLSTMInput(input: input_data)
+      do {
+        let sentiment_prediction = try model.prediction(fromFeatures: model_input)
+        callback([NSNull(), sentiment_prediction.output[0]])
+      } catch {
+        print("ERROR")
+      }
     } else {
       print("NATT")
     }
