@@ -110,7 +110,7 @@ export default class App extends React.Component {
         });
       });
     });
-  }, 300);
+  }, 500);
 
   handleTextChange = (text) => {
     this.setState({text}, () => this.checkSentiment(text));
