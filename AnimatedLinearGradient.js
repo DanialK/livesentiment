@@ -1,3 +1,5 @@
+// Froked from here https://github.com/heineiuo/react-native-animated-linear-gradient/blob/master/index.js
+// Fixed the RGBA having a negative component bug (**)
 import PropTypes from 'prop-types';
 import React, {Component} from 'react';
 import {StyleSheet, StatusBar, Dimensions, View, Animated, Easing} from 'react-native';
@@ -12,6 +14,7 @@ class LinearGradient extends Component {
     const gStart = points.start;
     const gEnd = points.end;
     const colors = [color0, color1]
+      // (**) Added this line to ensure it doens't produce a negative number in rgba
       .map(x => x.split("-").join(""))
       .map((c) => rgb2hex(c).hex);
 

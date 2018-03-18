@@ -1,6 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View, TextInput, Dimensions, KeyboardAvoidingView, Button } from 'react-native';
 import debounce from 'lodash/debounce';
+import isEmpty from 'lodash/isEmpty';
 import AnimatedLinearGradient, {presetColors} from './AnimatedLinearGradient'
 import {NativeModules} from 'react-native';
 import { isIphoneX } from 'react-native-iphone-x-helper';
@@ -80,42 +81,40 @@ const styles = StyleSheet.create({
 
 export default class App extends React.Component {
   state = {
-    colors: pallet.initial,
     text: '',
+    probability: undefined,
+    sentiment: undefined,
+    colors: pallet.initial,
   };
 
   checkSentiment = debounce(text => {
-    if (Sentiment && Sentiment.check) {
-      getVector(text).then(vectors => {
-        Sentiment.check(vectors, (err, score) => {
-          if (err) return;
-          const sentiment = score > 0.5 ? '+' : '-';
-          this.setState({
-            sentiment,
-            probability: Math.abs(score - 0.5) / 0.5,
-            colors: pallet[sentiment]
-          });
-        });
-      });
-    } else {
-      this.setState({error: "Error"})
-    }
-  }, 500);
+    const isTextEmpty = isEmpty(text.trim());
 
-  handleTextChange = (text) => {
-    if (!text) {
-      return this.setState({
-        text: '',
+    if (isTextEmpty) {
+      const state = {
         probability: undefined,
         sentiment: undefined,
         colors: pallet.initial
-      });
+      };
+      return this.setState(state);
     }
-    this.setState({text});
-    this.checkSentiment(text);
+
+    getVector(text).then(vectors => {
+      Sentiment.check(vectors, (err, score) => {
+        if (err) return;
+        const sentiment = score > 0.5 ? '+' : '-';
+        this.setState({
+          sentiment,
+          probability: Math.abs(score - 0.5) / 0.5,
+          colors: pallet[sentiment]
+        });
+      });
+    });
+  }, 300);
+
+  handleTextChange = (text) => {
+    this.setState({text}, () => this.checkSentiment(text));
   };
-
-
 
   render() {
     const { text, sentiment, probability, colors, error } = this.state;
