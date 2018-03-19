@@ -25,7 +25,7 @@ class SentimentModule extends ReactContextBaseJavaModule {
     }
 
     @ReactMethod
-    void check(String text, Callback callback) {
+    void check(int[] text, Callback callback) {
         callback.invoke(null, Math.random());
     }
 }
