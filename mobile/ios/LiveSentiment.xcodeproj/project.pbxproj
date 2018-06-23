@@ -24,8 +24,7 @@
 		146834051AC3E58100842450 /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 146834041AC3E56700842450 /* libReact.a */; };
 		2506A1742054F95E0009DDA8 /* Sentiment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25B79CFA2054E90A00B1F4B6 /* Sentiment.swift */; };
 		25420CEA205CD8DD00841389 /* www in Resources */ = {isa = PBXBuildFile; fileRef = 25420CE9205CD8DC00841389 /* www */; };
-		255C860F205CC835002292EE /* SentimentModelLSTM.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 255C860D205CC833002292EE /* SentimentModelLSTM.mlmodel */; };
-		255C8610205CC835002292EE /* SentimentModelConvSimple.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 255C860E205CC834002292EE /* SentimentModelConvSimple.mlmodel */; };
+		259AEA7420DE75400059D16F /* SentimentModel.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 259AEA7320DE753D0059D16F /* SentimentModel.mlmodel */; };
 		25B79CFD2054E93100B1F4B6 /* SentimentBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = 25B79CFC2054E93100B1F4B6 /* SentimentBridge.m */; };
 		2D02E4BC1E0B4A80006451C7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		2D02E4BD1E0B4A84006451C7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
@@ -365,8 +364,7 @@
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = LiveSentiment/main.m; sourceTree = "<group>"; };
 		146833FF1AC3E56700842450 /* React.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = React.xcodeproj; path = "../node_modules/react-native/React/React.xcodeproj"; sourceTree = "<group>"; };
 		25420CE9205CD8DC00841389 /* www */ = {isa = PBXFileReference; lastKnownFileType = folder; path = www; sourceTree = "<group>"; };
-		255C860D205CC833002292EE /* SentimentModelLSTM.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = SentimentModelLSTM.mlmodel; sourceTree = "<group>"; };
-		255C860E205CC834002292EE /* SentimentModelConvSimple.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = SentimentModelConvSimple.mlmodel; sourceTree = "<group>"; };
+		259AEA7320DE753D0059D16F /* SentimentModel.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = SentimentModel.mlmodel; sourceTree = "<group>"; };
 		25B79CFA2054E90A00B1F4B6 /* Sentiment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sentiment.swift; sourceTree = "<group>"; };
 		25B79CFC2054E93100B1F4B6 /* SentimentBridge.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SentimentBridge.m; sourceTree = "<group>"; };
 		2D02E47B1E0B4A5D006451C7 /* LiveSentiment-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "LiveSentiment-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -528,9 +526,8 @@
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
-				255C860E205CC834002292EE /* SentimentModelConvSimple.mlmodel */,
-				255C860D205CC833002292EE /* SentimentModelLSTM.mlmodel */,
 				13B07FB61A68108700A75B9A /* Info.plist */,
+				259AEA7320DE753D0059D16F /* SentimentModel.mlmodel */,
 				13B07FB11A68108700A75B9A /* LaunchScreen.xib */,
 				13B07FB71A68108700A75B9A /* main.m */,
 				D6358EA420372C3C0080ADFD /* LiveSentiment-Bridging-Header.h */,
@@ -1228,8 +1225,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				255C8610205CC835002292EE /* SentimentModelConvSimple.mlmodel in Sources */,
-				255C860F205CC835002292EE /* SentimentModelLSTM.mlmodel in Sources */,
+				259AEA7420DE75400059D16F /* SentimentModel.mlmodel in Sources */,
 				2506A1742054F95E0009DDA8 /* Sentiment.swift in Sources */,
 				13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */,
 				25B79CFD2054E93100B1F4B6 /* SentimentBridge.m in Sources */,
