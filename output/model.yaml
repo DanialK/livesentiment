@@ -43,7 +43,7 @@ config:
         class_name: Zeros
         config: {}
       bias_regularizer: null
-      dropout: 0.1
+      dropout: 0.0
       go_backwards: false
       implementation: 1
       kernel_constraint: null
@@ -54,7 +54,7 @@ config:
       name: lstm_1
       recurrent_activation: hard_sigmoid
       recurrent_constraint: null
-      recurrent_dropout: 0.5
+      recurrent_dropout: 0.0
       recurrent_initializer:
         class_name: VarianceScaling
         config: {distribution: normal, mode: fan_avg, scale: 1.0, seed: null}

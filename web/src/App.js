@@ -32,7 +32,7 @@ export default class App extends React.Component {
         }
 
         const vector = getVector(text, this.props.wordIndex);
-        const input = tf.tensor(vector, [1, MAX_SEQUENCE_LENGTH], "float32");
+        const input = tf.tensor(vector, [1, MAX_SEQUENCE_LENGTH], "int32");
         const prediction = await this.props.model.predict(input);
         const score = prediction.dataSync()[0];
         const sentiment = score > 0.5 ? "+" : "-";
